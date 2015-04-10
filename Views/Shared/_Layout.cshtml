@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - Document Search</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body style="border-top:none;">   
+                   @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+     
+             <div style="height:80px; background-color: #f5f5f5; border-bottom:1px solid #ccc;">
+                <div class="float-left">
+        <a class="navbar-brand headtop" style="float: left; height: 50px; font-size: 18px; line-height: 20px;" href="/Home">
+            <span class="headerinner" style=" float: left; font-family: 'open_sansregular'; font-size: 24px; font-weight:bold; height: 50px; left: 7%; padding: 5px 0 0 40px; text-align: left; vertical-align:central;"><h4 style="color:#3399cc;">@System.Web.Configuration.WebConfigurationManager.AppSettings["HeaderNote"]</h4></span></a>
+                </div>
+                 </div>
+            
+     
+        <div id="body" style="height:500px;">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix"@* style="height:450px;"*@>
+                @RenderBody()
+            </section>
+        </div>
+          <div class="footer">
+      <div class="container-fluid PNONE">
+       <div class="col-lg-6" style="background-color: #f5f5f5; bottom: 0; width: 100%; border-top: 1px solid #ccc; height: 50px;">
+           @*<p class="lightsm">Miracomp 2014. All right reserved.</p>*@
+           <p class="lightsm" style="position: relative; min-height: 1px; padding-right: 15px; padding-left: 15px;">@System.Web.Configuration.WebConfigurationManager.AppSettings["FooterNote"]</p>
+       </div>
+          </div>
+              </div>
+
+    </body>
+</html>

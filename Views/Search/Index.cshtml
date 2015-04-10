@@ -1,0 +1,76 @@
+﻿@model DOCSEARCHOUTSERVER.SearchLibrary.Search
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="">
+    <div id="boxContainer">
+        <div id="Griedcontent" class="col-lg-12 col-md-12 table-padding">     
+            @if (Model == null)
+            {
+                <h3>Invalid User Id</h3>
+            }
+            else if (Model.docs.Count() != 0)
+            {
+                 <div style="width:100%; float:left;">
+                    <div style="width:50%; float:left;">
+                <div class="">
+                    @*<h4>*@ <label style=" font-family: open_sansregular; font-size: 14px; font-weight: normal; padding-bottom: 10px;"> Document Search Results</label>@*</h4>*@</div>
+                        @*<label >@ViewBag.ID</label>*@
+                        </div>                
+                    </div>
+                <table class="table table-striped border-table" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th style="width: 90%; word-wrap: break-word;" >
+                                <a href="javascript:;" class="sort ascending" style=" margin-left: 10px;" >Document Name</a>
+                            </th>                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        @foreach (var user in Model.docs)
+                        {
+                            <tr class="managerPortalList">
+                                <td>
+                                    @{  
+                                        <a href="javascript:void(0);" onclick="ShowPDFFile(@ViewBag.ID, '@user')" class="popup" style="font-family:open_sansregular; font-size:14px; margin-left:10px;">@user</a>
+                                     }
+                                </td>                               
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div>
+                    <h3>
+                        No Records found</h3>
+                </div>
+            }
+            </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function ShowPDFFile(Id, fileName) {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("DownloadandShowPdf", "Search")",
+                    dataType: "json",
+                    data: { ID: Id, FileName: fileName },
+                    success: function (data) {
+                        if (data.Downloaded == true) {
+                            var docLocation = '@Url.Content("~/Content/Download/")' + fileName;
+                            //alert(docLocation);
+                            window.open(docLocation, '_blank', "menubar,scrollbars,width=1200,height=550,top=0,left=0");
+                        }
+                        else {
+                            alert('Error occured to view the PDf document.');
+                        }
+                    }
+        });       
+    }
+</script>

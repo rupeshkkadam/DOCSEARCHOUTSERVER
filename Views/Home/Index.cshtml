@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}    
+        <div class="content-wrapper">
+            <hgroup class="title">                
+            </hgroup>     
+            
+            <div class="col5" >
+				 <div class="fromContent">
+					<h3>Document Search</h3>		
+                     @Html.ValidationSummary(true)				
+                       <div class="form-group inputform" style="margin-bottom: 10px; margin-top: 20px;">
+                            <label for="exampleInputEmail1">Enter ID:</label>
+                            <input type="text" id="ID" name="ID" style="width:200px;" />
+                      </div>                                          
+                   <input name="search" type="button" @*class="apply-btn"*@ id="Search" style="margin-top: 0px; width: 75px; " value="Search" />
+                   <input name="clear" type="button" @*class="clear-button"*@ value="Clear" id="clear" style="margin-top: 5px; margin-left: 20px; width: 75px;" >
+                 </div>
+             </div>
+        </div>       
+        
+<script type="text/javascript">
+    $(function () {
+        $("#clear").click(function () {
+            $("#ID").val("");
+
+        });
+
+        $("#ID").keyup(function (event) {
+            if (event.keyCode == 13) {
+                $("#Search").click();
+            }
+        });
+
+        $("#Search").click(function () {
+            //alert($("#ID").val());
+            window.location.href = '/Search/Index?ID=' + $("#ID").val();
+            return true;
+        });
+    });
+</script>
+
