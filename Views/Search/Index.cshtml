@@ -56,7 +56,10 @@
 </div>
 <script type="text/javascript">
     function ShowPDFFile(Id, fileName) {
-        $.ajax({
+       var url = "DownloadUsingFTPJSONNew\\" + Id + "?FileName=" + fileName;
+        window.open(url, "_blank", "menubar,scrollbars,width=1200,height=550,top=0,left=0");
+        
+        @*$.ajax({
             type: "POST",
             url: "@Url.Action("DownloadandShowPdf", "Search")",
                     dataType: "json",
@@ -71,6 +74,6 @@
                             alert('Error occured to view the PDf document.');
                         }
                     }
-        });       
+        });  *@     
     }
 </script>
